@@ -1,0 +1,26 @@
+[
+    {
+        "id": 0,
+        "name": "kitten",
+        "photo": "/assets/kitten.png",
+        "choice": 0
+    },
+    {
+        "id": 1,
+        "name": "dog",
+        "photo": "/assets/dog.png",
+        "choice": 0
+    },
+    {
+        "id": 2,
+        "name": "goldfish",
+        "photo": "/assets/goldfish.png",
+        "choice": 0
+    },
+    {
+        "id": 3,
+        "name": "slime",
+        "photo": "/assets/slime.png",
+        "choice": 0
+    }
+]
