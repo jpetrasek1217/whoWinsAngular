@@ -1,15 +1,15 @@
-<div *ngIf="currentScreen === picking">
+<div class="quiz-container" *ngIf="!gotAWinner()">
     <h1>WHO WINS?</h1>
     <div class="all-options">
         <div class="options-div" *ngFor="let option of selectedOptions">
-            <button (click)="onClick(option.id)">{{option.name}}</button>
+            <button (click)="pickItemClick(option.id)">{{option.name}}</button>
             <img [src]="'assets/' + option.name + '.png'" [alt]="option.name">
         </div>
     </div>
 </div>
 
-<div *ngIf="currentScreen === results">
-    <h1>{{winner.name}} WINS?</h1>
-    <button (click)="window.location.reload()">Try Again</button>
+<div class="quiz-container" *ngIf="gotAWinner()">
+    <h1>{{getWinner().name}} WINS</h1>
+    <button (click)="tryAgainClick()">Try Again</button>
 </div>
 

@@ -47,7 +47,7 @@ export class PickingScreenComponent implements OnInit {
 
   selectedOptions: Thing[] = [];
 
-  ChosenOptions: number[] = new Array(5).fill(0);
+  chosenOptions: number[] = new Array(5).fill(0);
 
   
 
@@ -65,13 +65,11 @@ export class PickingScreenComponent implements OnInit {
     });  
   } 
 
-  onClick(id: number) {
-    this.ChosenOptions[id] += 1;
-    console.log(this.ChosenOptions);
+  pickItemClick(id: number) {
+    this.chosenOptions[id] += 1;
+    console.log(this.chosenOptions);
     if (!this.areResultsIn()){
       this.getNextOptions();
-    } else{
-      //design results page, get a refresh button working, and badabing badaboom u made your first angular app!
     }
   }
 
@@ -84,7 +82,7 @@ export class PickingScreenComponent implements OnInit {
 
   areResultsIn(): any {
     let isAnyResultIn = false;
-    this.ChosenOptions.forEach((num) =>{
+    this.chosenOptions.forEach((num) =>{
       if (num > 9){
         isAnyResultIn = true;
       }
@@ -92,7 +90,14 @@ export class PickingScreenComponent implements OnInit {
     return isAnyResultIn;
   }
     
-  
+  tryAgainClick(): void{
+    this.chosenOptions = [];
+    let i=0;
+    this.OptionsList.forEach(element => {
+      this.chosenOptions[i] = 0;  i++;
+    });
+    window.location.reload()
+  }
 
   shuffleArray(array: any[]): any[] {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -112,4 +117,18 @@ export class PickingScreenComponent implements OnInit {
 
     return array;
   }
+
+  gotAWinner(): any{
+    let winnerFound = false;
+    this.chosenOptions.forEach(numTimesChosen => {
+      if (numTimesChosen>4){
+        winnerFound = true;
+      }
+    }); return winnerFound;
+  }
+
+  getWinner(): any{
+    return this.OptionsList[this.chosenOptions.indexOf(Math.max(...this.chosenOptions))]
+  }
+
 }
